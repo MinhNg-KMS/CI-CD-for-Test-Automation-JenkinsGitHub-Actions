@@ -23,6 +23,11 @@ pipeline {
                     '''
                 }
             }
+            post {
+                always {
+                    junit testResults:'bugtracker-frontend/test-results.xml'
+                }
+            }
         }
     }
 }
