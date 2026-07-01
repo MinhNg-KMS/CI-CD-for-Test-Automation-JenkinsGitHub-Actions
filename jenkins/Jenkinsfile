@@ -2,6 +2,10 @@ pipeline {
     agent any
 
     stages {
+        tools {
+            go 'go-1.26'
+            node 'node26'
+        }
         stage('Backend Unit Test') {
             steps {
                 dir('bugtracker-backend') {
