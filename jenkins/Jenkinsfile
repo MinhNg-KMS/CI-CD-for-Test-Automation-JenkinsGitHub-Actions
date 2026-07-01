@@ -10,7 +10,11 @@ pipeline {
         stage('Backend Unit Test') {
             steps {
                 dir('bugtracker-backend') {
-                    sh 'go test -v ./... 2>&1 | go-junit-report > reports.xml'
+                    sh '''
+                        go install github.com/jstemmer/go-junit-report/v2@latest
+                        export PATH=$PATH:$(go env GOPATH)/bin
+                        go test -v ./... | go-junit-report > test-results.xml
+                    '''
                 }
             }
             post {
