@@ -10,7 +10,12 @@ pipeline {
         stage('Backend Unit Test') {
             steps {
                 dir('bugtracker-backend') {
-                    sh 'go test -v ./...'
+                    sh 'go test -v ./... 2>&1 | go-junit-report > reports.xml'
+                }
+            }
+            post {
+                always {
+                    junit testResults: 'bugtracker-backend/report.xml'
                 }
             }
         }
