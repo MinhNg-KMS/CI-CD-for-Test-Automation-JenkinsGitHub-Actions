@@ -3,7 +3,7 @@ pipeline {
 
     tools {
             go 'go-1.26'
-            node 'node26'
+            nodejs 'node26'
     }
 
     stages {    
